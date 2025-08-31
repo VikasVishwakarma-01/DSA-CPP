@@ -1,0 +1,30 @@
+# Compiled source files
+*.o
+*.obj
+*.so
+*.a
+*.out
+*.exe
+
+# Debug files
+*.dSYM/
+*.stackdump
+
+# Visual Studio Code
+.vscode/
+*.code-workspace
+
+# CLion / JetBrains
+.idea/
+cmake-build-*/
+
+# Windows specific
+Thumbs.db
+*.pdb
+
+# Linux / Mac specific
+*.swp
+*.DS_Store
+
+# Logs
+*.log
