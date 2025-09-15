@@ -1,0 +1,53 @@
+Start
+  │
+  ├── Do you need decimals (fractions)?
+  │       │
+  │       ├── YES → Cast to (double)
+  │       │          │
+  │       │          ├── Extreme precision needed? 
+  │       │          │         ├── YES → Use (long double)
+  │       │          │         └── NO  → Stay with (double)
+  │       │
+  │       └── NO (integers only)
+  │
+  ├── Is the result possibly > 2.1e9 (INT_MAX)?
+  │       │
+  │       ├── YES → Cast operands to (long long)
+  │       │          │
+  │       │          ├── Is result possibly > 9e18?
+  │       │          │         ├── YES → Use __int128 (GCC/Clang) or BigInt libs
+  │       │          │         └── NO  → Stay with (long long)
+  │       │
+  │       └── NO → Keep as int
+  │
+  ├── Are you working with characters?
+  │       │
+  │       ├── YES → They auto-promote to int
+  │       │          │
+  │       │          └── Need ASCII value? → Cast with (int)c
+  │       │
+  │       └── NO → Continue
+  │
+  ├── Are signed + unsigned mixed?
+  │       │
+  │       ├── YES → Fix by casting both to signed long long or unsigned long long
+  │       └── NO  → Safe
+  │
+  └── End → Use chosen type
+-------------------------------------------------------------------------------------------
+
+int a = 1e9, b = 5;
+double d = 2.5;
+char c = 'A';
+
+// Prevent integer overflow
+long long big = (long long)a * b;
+
+// Prevent integer division
+double div = (double)a / b;
+
+// Mixed with double
+double mix = a + d;   // promoted to double
+
+// Char to int
+int ascii = (int)c;
