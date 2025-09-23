@@ -41,6 +41,12 @@ int solvebu(int n) {
     }
 }
 
+
+
+int solveDP(int n) {
+
+}
+
 int main()
 {
     int n;
