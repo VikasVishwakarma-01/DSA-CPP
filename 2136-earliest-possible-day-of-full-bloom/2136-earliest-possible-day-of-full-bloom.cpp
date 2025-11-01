@@ -15,16 +15,16 @@ public:
         }
         sort(pg.begin(), pg.end(),cmp);
 
-        priority_queue<int> pq;
+        
         int ans = 0;
-
+        int maxAns = 0;
         for(int i = 0; i < n; i++) {
             int plant = pg[i].first;
             int grow = pg[i].second;
             ans += plant;
-            pq.push(ans + grow);
+            maxAns = max(maxAns, ans + grow);
         }
 
-        return pq.top();
+        return maxAns;
     }
 };
